@@ -1,4 +1,4 @@
-###A machine learning project for detecting Distributed Denial-of-Service (DDoS) network traffic using a Random Forest classifier.
+### A machine learning project for detecting Distributed Denial-of-Service (DDoS) network traffic using a Random Forest classifier.
 
 The model classifies network flows into two categories:
 
