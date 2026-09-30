@@ -1,40 +1,53 @@
-### A machine learning project for detecting Distributed Denial-of-Service (DDoS) network traffic using a Random Forest classifier.
+# AI-Threat-Detection
 
-The model classifies network flows into two categories:
+An end-to-end Machine Learning pipeline for automated Network Intrusion Detection (NIDS). This project analyzes network traffic flow features to classify traffic as **benign** or **malicious** with high precision and recall.
 
-BENIGN — legitimate network traffic
+---
 
-DDoS — Distributed Denial-of-Service traffic
+## Overview & Objectives
 
-##Dataset - Network Intrusion dataset(CIC-IDS- 2017)
+Traditional threat detection systems often struggle with evolving traffic patterns and high volumes of data. This project leverages supervised machine learning to deliver fast, highly accurate, and automated threat detection across network traffic logs.
 
-Source - Kaggle
-The dataset contains network-flow statistics extracted from network traffic.
+### Key Highlights
+- **High Performance:** Achieved balanced Precision, Recall, and F1-scores of `1.00` on test evaluation.
+- **Robust Validation:** 5-fold cross-validation demonstrated consistent reliability with a mean score of `~0.99978`.
+- **Feature Optimization:** Identified critical network metrics driving malicious traffic classification.
 
-After loading the dataset:
+---
 
-Rows: 225,745
+## Key Features & Model Insights
 
-Columns: 79
+Feature importance analysis revealed that forward packet behavior and initial window bytes are the strongest predictors of malicious activity:
 
-Input features: 78
+1. `Init_Win_bytes_forward` — Initial window size in bytes for forward flow.
+2. `Forward Packet Length Max` — Maximum length of forward packets.
+3. `Average Forward Segment Size` — Mean size of forward segments.
+4. `Forward Packet Length Mean` — Average length of forward packets.
 
-Target: Label
+---
 
-Problem type: Binary classification
+## Performance & Evaluation
 
-Example features include:
+### 5-Fold Cross-Validation Scores
+- **Fold Scores:** `[0.999354, 0.999354, 0.999845, 0.999354, 0.999912]`
+- **Mean CV Score:** `0.999783`
 
-Destination Port
-Flow Duration
-Total Fwd Packets
-Total Backward Packets
-Flow Bytes/s
-Flow Packets/s
-Fwd Packet Length Max
-Fwd Packet Length Mean
-Packet Length Mean
-Init_Win_bytes_forward
-Init_Win_bytes_backward
-Subflow Fwd Bytes
-Average Packet Size
+### Model Metrics Summary
+| Metric | Score |
+| :--- | :--- |
+| **Precision** | `1.00` |
+| **Recall** | `1.00` |
+| **F1-Score** | `1.00` |
+| **Accuracy** | `99.98%` |
+
+---
+
+## Reproduction & Environment Setup
+
+This project was developed and tested in **Google Colab** and can also be executed locally.
+
+### Prerequisites & Dependencies
+Ensure you have **Python 3.8+** installed along with the following packages:
+
+```bash
+pip install numpy pandas scikit-learn matplotlib seaborn jupyter
