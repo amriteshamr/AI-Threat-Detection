@@ -51,3 +51,38 @@ Ensure you have **Python 3.8+** installed along with the following packages:
 
 ```bash
 pip install numpy pandas scikit-learn matplotlib seaborn jupyter
+```
+
+## 🛠️ Technical Approach and Model Architecture
+
+To handle the multi-class classification task across **15 distinct classes**, the feature data was preprocessed using `StandardScaler` (centering features to mean ~0 and unit variance ~1). 
+
+The deep learning architecture was updated with the following full configuration:
+
+### Model Architecture & Hyperparameters
+
+```python
+import tensorflow as np
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense
+from tensorflow.keras.optimizers import Adam
+
+# Sequential model build
+model = Sequential([
+    # Input layer and hidden layers
+    Dense(64, activation='relu', input_shape=(78,)),
+    Dense(32, activation='relu'),
+    
+    # Final output layer updated for 15 classes
+    Dense(15, activation='softmax')
+])
+
+# Optimizer re-instantiated with learning rate 0.0001
+opt = Adam(learning_rate=0.0001)
+
+# Compilation
+model.compile(
+    optimizer=opt,
+    loss='sparse_categorical_crossentropy',
+    metrics=['accuracy']
+)
